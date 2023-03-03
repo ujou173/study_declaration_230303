@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+    console.log( typeof(root.style));
+
+    // root.style.width = "100px";
+    // console.log(root.style.width);
+    for(let brother in root.style) {
+      // console.log(brother);
+      if(brother === "width") {
+        // brother === "100px";
+        root.style[brother] = "100px";
+        console.log(root.style[brother]);
+      } else {
+        // console.error("그런건 없다");
+      }
+    }
+  </script>
+</body>
+</html>
