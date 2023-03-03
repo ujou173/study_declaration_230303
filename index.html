@@ -7,6 +7,48 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div id="root"></div>
+  <script>
+    // 가장 직관적인 방법으로 일단 써보기
+    const root = document.getElementById('root');
+    const makeUl = document.createElement('ul');
+    root.appendChild(makeUl);
+    // makeUl.style.width = "100px";
+    // makeUl.style.height = "100px";
+    // makeUl.style.border = "1px solid black";
+
+    // 래핑이 가능한가?
+    const ulStyleObject = ["width", "height", "border"];
+    const ulStyleValue = ["100px", "100px", "1px solid black"];
+    // makeUl.style[ulStyleObject[0]] = "100px";
+    // makeUl.style[ulStyleObject[1]] = "100px";
+    // makeUl.style[ulStyleObject[2]] = "1px solid black";
+
+    // 반복문, 제어문을 이용해 프로그래밍이 가능한가?
+    // for(let i = 0; i < ulStyleObject.length; i++) {
+    //   makeUl.style[ulStyleObject[i]] = ulStyleValue[i];
+    // }
+
+    let DOMStyle = {
+      firstArray : ["width", "height", "border"],
+      secondArray : ["100px", "100px", "1px solid black"],
+      element : root.children[0],
+    }
+
+    // 유지보수를 위해 함수화가 가능한가?
+    function twoArrayDomStyling(firstArray, secondArray, element) {
+      for(let i = 0; i < firstArray.length; i++) {
+      element.style[firstArray[i]] = secondArray[i];
+      }
+    }
+    twoArrayDomStyling(ulStyleObject, ulStyleValue, makeUl);
+
+    function oneObjectDOMStyling(object) {
+      for(let i = 0; i < object.firstArray.length; i++) {
+      object.element.style[object.firstArray[i]] = object.secondArray[i];
+      }
+    }
+    oneObjectDOMStyling(DOMstyle);
+  </script>
 </body>
 </html>
