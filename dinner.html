@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+    const buttonMake = document.createElement('button');
+    const pTag = document.createElement('p');
+    buttonMake.textContent = "Click"
+    root.appendChild(buttonMake);
+
+    const dinner = [
+      "목살 스테이크",
+      "오리 훈제",
+      "파스타",
+      "삼겹살",
+      "맥주 한 캔",
+      "케이준 샐러드",
+      "순대와 간",
+      "햄버거",
+      "굶자",
+      "김치찌개",
+      "오뎅탕",
+      "알탕",
+      "계란찜",
+      "계란말이",
+      "떡볶이",
+    ];
+
+    const cash = [
+      "17000",
+      "14000",
+      "14000",
+      "20000",
+      "4000",
+      "8000",
+      "13000",
+      "12000",
+      "0",
+      "7000",
+      "6000",
+      "8000",
+      "3000",
+      "2000",
+      "5000",
+    ];
+
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+    }
+    console.dir(root);
+
+    let history;
+    root.children[0].addEventListener('click', function(){
+      let randomValue = getRandomInt(0, dinner.length);
+      console.log(randomValue);
+      console.log(history);
+      if(history === randomValue) {
+        while(history !== randomValue){
+          randomValue = getRandomInt(0, dinner.length);
+          console.log("중복" + randomValue)
+        }
+        pTag.textContent = dinner[randomValue] + " : " + cash[randomValue] + "원";
+        root.appendChild(pTag);
+        history = randomValue;
+        console.log("중복발생 후 출력" + randomValue);
+        console.log("중복발생 후 history" + history);
+      } else {
+        pTag.textContent = dinner[randomValue] + " : " + cash[randomValue] + "원";
+        root.appendChild(pTag);
+        history = randomValue;
+        console.log(history);
+      }
+    });
+
+    // for(let property in Math){
+    //   console.log(property);
+    // }
+    // console.dir(Math);
+
+  </script>
+</body>
+</html>
+

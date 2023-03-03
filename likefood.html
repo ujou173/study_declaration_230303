@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    let studentObject = {
+      "강지민":"마라탕",
+      "곽윤호":"조개",
+      "권예준":"가지",
+      "김동주":"버섯",
+      "김은아":"굴",
+      "김종윤":"오이",
+      "김지섭":"술",
+      "김형진":"버섯",
+      "노수민":"다리많은거",
+      "류은이":"피망",
+      "박달재":"벌레",
+      "박수연":"삼결살",
+      "박준형":"생간",
+      "성해경":"우엉",
+      "이경택":"홍어",
+      "이세민":"짜장면",
+      "이재권":"가지",
+      "임지성":"단무지",
+      "장루빈":"김치",
+      "정성철":"고수",
+      "정지은":"버섯",
+      "정희은":"술",
+      "최대건":"뼈많은생선",
+      "한유진":"양파",
+      "허진":"딸기",
+    };
+
+    // 반복문을 돌려서
+    // 몇 명이 버섯을 싫어하는지
+    // 버섯을 싫어하는 사람의 이름
+
+    let hatefoodArray = ["가지", "술"]
+
+    const root = document.getElementById('root');
+    for(let i = 0; i < hatefoodArray.length; i++) {
+      const buttonMake = document.createElement('button');
+      buttonMake.textContent = hatefoodArray[i];
+      buttonMake.style.marginLeft = "10px";
+      root.appendChild(buttonMake);
+    }
+
+    const buttons = document.getElementsByTagName('button');
+    console.log(buttons[0]);
+
+    for(let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        hatefood(buttons[i].textContent);
+      })
+    }
+    
+    const divTag = document.createElement('div');
+    function hatefood(hate) {
+      divTag.innerHTML = "";
+      let hateMushroom = 0;
+      let hateMushroomHuman = [];
+      for(let name in studentObject) {
+        if(studentObject[name] === hate) {
+          hateMushroom ++;
+          hateMushroomHuman.push(name);
+        }
+      }
+      const h1Tag = document.createElement('h1');
+      h1Tag.textContent = hate + "을 싫어하는 사람은?"
+      divTag.appendChild(h1Tag);
+      for(let i=0; i < hateMushroomHuman.length; i++) {
+        const pTag = document.createElement('p');
+        pTag.textContent = hateMushroomHuman[i];
+        divTag.appendChild(pTag);
+      }
+      const spanTag = document.createElement('span');
+      spanTag.textContent = "총 " + hateMushroom + "명";
+      divTag.appendChild(spanTag);
+    
+      console.log(hateMushroom);
+      console.log(hateMushroomHuman);
+
+      root.appendChild(divTag);
+    }
+    
+    // hatefood("가지");
+    
+
+  </script>
+</body>
+</html>
